@@ -14,9 +14,12 @@ function DetailsScreen() {
 
 function HomeScreen({navigation}) {
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View
+      testID="home_screen"
+      style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>Home screen</Text>
       <Button
+        testID="go_to_details_button"
         title="Go to Details"
         onPress={() => navigation.navigate('Details')}
       />
