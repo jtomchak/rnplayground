@@ -109,7 +109,7 @@ commands:
             source $BASH_ENV
             sdkmanager --list
       - save_cache:
-          key: android=tools-v1-{{ checksum "./install-android-tools.sh" }}-{{ arch }}
+          key: android=tools-v1-{{ checksum "./install-android-deps.sh" }}-{{ arch }}
           paths:
             - /Users/distiller/android-tools
 
