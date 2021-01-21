@@ -2,7 +2,7 @@ version: 2.1
 
 commands:
   node-version:
-    description: 'Install node version 12'
+    description: 'Install node version 12 LTS'
     steps:
       - run:
           name: 'Install Project Node'
