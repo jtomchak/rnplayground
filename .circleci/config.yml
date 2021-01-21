@@ -164,9 +164,9 @@ jobs:
       - node-version
       - bundle-dependencies
       - npm-dependencies
+      - android-sdk-dependencies
       - react-native-dependencies
       - gradle-dependencies
-      - android-sdk-dependencies
       - create-launch-android-emulator
       - clear-detox-cache
 
