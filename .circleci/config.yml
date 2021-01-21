@@ -24,14 +24,14 @@ commands:
           command: node -v
       - restore_cache:
           name: Restore npm cache
-          key: v1-npm-{{ checksum "./package-lock.json" }}-{{ arch }}
+          key: v1-npm-{{ checksum "./yarn.lock" }}-{{ arch }}
       - run:
           working_directory: .
           name: Installing JavaScript dependencies
-          command: npm install
+          command: yarn
       - save_cache:
           name: Save npm cache
-          key: v1-npm-{{ checksum "./package-lock.json" }}-{{ arch }}
+          key: v1-npm-{{ checksum "./yarn.lock" }}-{{ arch }}
           paths:
             - ././node_modules
 
@@ -173,7 +173,12 @@ jobs:
       - run:
           working_directory: .
           name: Run android detox build
-          command: yarn e2e:android-debug
+          command: yarn build:android-debug
+
+      - run:
+          working_directory: .
+          name: Run android detox test
+          command: yarn test:android-debug
 
       - store_artifacts:
           path: ././artifacts
