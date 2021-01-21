@@ -8,6 +8,7 @@
     "build:android-debug": "detox build --configuration android.debug",
     "test:android-debug": "detox test --configuration android.debug --headless --record-logs all",
     "e2e:android-debug": "npm run build:android-debug && npm run test:android-debug",
+    "e2e:android-release": "detox build -c android.release && detox test -c android.release -h --record-logs all",
     "clean:android": "pushd android && ./gradlew clean && popd",
     "ios": "react-native run-ios",
     "start": "react-native start",

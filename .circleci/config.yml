@@ -173,12 +173,7 @@ jobs:
       - run:
           working_directory: .
           name: Run android detox build
-          command: yarn build:android-debug
-
-      - run:
-          working_directory: .
-          name: Run android detox test
-          command: yarn test:android-debug
+          command: yarn e2e:android-release
 
       - store_artifacts:
           path: ././artifacts
