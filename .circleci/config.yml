@@ -44,7 +44,7 @@ commands:
       - run:
           working_directory: .
           name: Download Fastlane dependencies
-          command: bundle install --path ./vendor/bundle
+          command: bundle config set path './vendor/bundle'
       - save_cache:
           name: Save Fastlane cache
           key: v1-gems-{{ checksum "Gemfile.lock" }}-{{ arch }}
@@ -226,5 +226,5 @@ workflows:
 
   run_detox_tests:
     jobs:
-      - android-test
+      # - android-test
       - ios-test
