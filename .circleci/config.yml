@@ -173,12 +173,7 @@ jobs:
       - run:
           working_directory: .
           name: Run android detox build
-          command: npx detox build -c android.emu.release
-
-      - run:
-          working_directory: .
-          name: Run android detox test
-          command: npx detox test -c android.emu.release --headless --record-logs all
+          command: yarn e2e:android-debug
 
       - store_artifacts:
           path: ././artifacts
