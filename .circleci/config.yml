@@ -94,14 +94,14 @@ commands:
       - run:
           name: set ANDROID_SDK_ROOT
           command: |
-            echo 'export ANDROID_SDK_ROOT=$HOME/android-tools'  >> $BASH_ENV
+            echo 'export ANDROID_SDK_ROOT=$HOME/android-deps'  >> $BASH_ENV
       - restore_cache:
-          key: android=tools-v1-{{ checksum "./install-android-tools.sh" }}-{{ arch }}
+          key: android=tools-v1-{{ checksum "./install-android-deps.sh" }}-{{ arch }}
 
       - run:
-          name: install android tools
+          name: install android deps
           command: |
-            sh ./install-android-tools.sh
+            sh ./install-android-deps.sh
             echo 'export PATH=$ANDROID_SDK_ROOT/tools/bin:$PATH'  >> $BASH_ENV
             echo 'export PATH=$ANDROID_SDK_ROOT/tools:$PATH'  >> $BASH_ENV
             echo 'export PATH=$ANDROID_SDK_ROOT/platform-tools:$PATH'  >> $BASH_ENV
@@ -111,7 +111,7 @@ commands:
       - save_cache:
           key: android=tools-v1-{{ checksum "./install-android-deps.sh" }}-{{ arch }}
           paths:
-            - /Users/distiller/android-tools
+            - /Users/distiller/android-deps
 
   react-native-dependencies:
     description: 'Install RN dependencies'
