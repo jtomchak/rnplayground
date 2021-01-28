@@ -160,7 +160,7 @@ jobs:
     steps:
       - when:
           condition:
-            equal: [develop, << pipeline.git.branch >>]
+            equal: [main, << pipeline.git.branch >>]
           steps:
             - attach_workspace:
               at: .
