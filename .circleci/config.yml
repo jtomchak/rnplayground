@@ -156,15 +156,14 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/node:10-browsers
+      - image: circleci/node:latest
+    environment:
+      CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+    working_directory: ~/main
     steps:
-      - checkout
-      - run:
-          name: The First Step
-          command: |
-            echo 'Hello World!'
-            echo 'This is the delivery pipe'
-            git log -1 --pretty=format:%b $CIRCLE_SHA1
+      - run: echo "This is pipeline ID << pipeline.id >>"
+      - run: echo $CIRCLE_COMPARE_URL
+      - run: echo $(git log -1 --pretty=format:%b $CIRCLE_SHA1)
   android-test:
     macos:
       xcode: 11.3.1
