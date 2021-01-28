@@ -154,6 +154,16 @@ commands:
             npx detox clean-framework-cache
             npx detox build-framework-cache
 jobs:
+  build:
+    docker:
+      - image: alpine:3.7
+    steps:
+      - run:
+          name: The First Step
+          command: |
+            echo 'Hello World!'
+            echo 'This is the delivery pipe'
+            echo "export COMMIT_MESSAGE=\"$(git log --format=oneline -n 1 $CIRCLE_SHA1)\""
   android-test:
     macos:
       xcode: 11.3.1
@@ -219,10 +229,13 @@ jobs:
 workflows:
   version: 2
 
+  build_it_default:
+    jobs:
+      - build
   run_detox_tests:
     when:
       or:
-        - equal: [master, << pipeline.git.branch >>]
+        - equal: [develop, << pipeline.git.branch >>]
     jobs:
       - android-test
       # - ios-test
