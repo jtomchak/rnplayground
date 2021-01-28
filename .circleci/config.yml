@@ -164,7 +164,7 @@ jobs:
           command: |
             echo 'Hello World!'
             echo 'This is the delivery pipe'
-            echo git log -1 --pretty=format:%b $CIRCLE_SHA1
+            git log -1 --pretty=format:%b $CIRCLE_SHA1
   android-test:
     macos:
       xcode: 11.3.1
