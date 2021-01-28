@@ -165,7 +165,7 @@ jobs:
       - checkout
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo $CIRCLE_COMPARE_URL
-      - run: git log -1 --pretty=format:%b $GIT_VERSION
+      - run: echo "$(git log -1 --pretty=format:%b $GIT_VERSION)"
 
   android-test:
     macos:
