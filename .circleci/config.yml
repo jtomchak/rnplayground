@@ -218,8 +218,12 @@ jobs:
 
 workflows:
   version: 2
-
   run_detox_tests:
     jobs:
       - android-test
       # - ios-test
+          filters:
+            branches:
+              ignore:
+                - develop
+                - main
