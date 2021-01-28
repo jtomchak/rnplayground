@@ -163,7 +163,8 @@ jobs:
       - image: circleci/node:10-browsers
     working_directory: ~/main
     steps:
-      - run: echo "<< pipeline.parameters.mobile-deploy >>"
+      - checkout
+      - run: echo " what is the mobile-deploy << pipeline.parameters.mobile-deploy >>"
       - when:
           condition:
             equal: [deploy, << pipeline.parameters.mobile-deploy >>]
