@@ -161,14 +161,16 @@ jobs:
   build:
     docker:
       - image: circleci/node:10-browsers
-    environment:
-      CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
     working_directory: ~/main
     steps:
       - checkout
-      - run: echo "This is pipeline ID << pipeline.id >>"
-      - run: echo $CIRCLE_COMPARE_URL
       - run: echo "<< pipeline.parameters.commit-message >>"
+      - when:
+          condition:
+            equal: [deploy, << pipeline.parameters.commit-message >>]
+          steps:
+            - run: echo "<< pipeline.parameters.commit-message >>"
+      - run: echo 0
 
   android-test:
     macos:
