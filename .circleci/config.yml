@@ -1,8 +1,8 @@
 version: 2.1
 parameters:
-  commit-message:
-    type: string
-    default: "deploy" == $(git log --format="%s" -n 1 $CIRCLE_SHA1)
+  mobile-deploy:
+    type: boolean
+    default: 'deploy' == $(git log --format="%s" -n 1 $CIRCLE_SHA1)
 
 commands:
   node-version:
@@ -163,13 +163,12 @@ jobs:
       - image: circleci/node:10-browsers
     working_directory: ~/main
     steps:
-      - checkout
-      - run: echo " what is the message << pipeline.parameters.commit-message >>"
+      - run: echo " what is the mobile-deploy << pipeline.parameters.mobile-deploy >>"
       - when:
           condition:
-            equal: [true, << pipeline.parameters.commit-message >>]
+            equal: [true, << pipeline.parameters.mobile-deploy >>]
           steps:
-            - run: echo "<< pipeline.parameters.commit-message >>"
+            - run: echo "<< pipeline.parameters.mobile-deploy >>"
       - run: echo 0
 
   android-test:
