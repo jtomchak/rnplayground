@@ -1,8 +1,8 @@
 version: 2.1
 parameters:
   mobile-deploy:
-    type: boolean
-    default: 'deploy' == $(git log --format="%s" -n 1 $CIRCLE_SHA1)
+    type: string
+    default: ('deploy' == $(git log --format="%s" -n 1 $CIRCLE_SHA1))
 
 commands:
   node-version:
