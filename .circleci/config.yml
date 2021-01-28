@@ -166,7 +166,7 @@ jobs:
       - checkout
       - when:
           condition:
-            equal: [deploy, << pipeline.parameters.commit-message >>]
+            equal: ['deploy', << pipeline.parameters.commit-message >>]
           steps:
             - run: echo "<< pipeline.parameters.commit-message >>"
       - run: echo 0
