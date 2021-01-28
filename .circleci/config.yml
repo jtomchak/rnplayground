@@ -164,7 +164,7 @@ jobs:
     working_directory: ~/main
     steps:
       - checkout
-      - run: echo "'deploy' == << pipeline.parameters.mobile-deploy >>"
+      - run: echo "deploy == << pipeline.parameters.mobile-deploy >>"
       - when:
           condition:
             equal: [deploy, << pipeline.parameters.mobile-deploy >>]
