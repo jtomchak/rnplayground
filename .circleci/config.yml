@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   mobile-deploy:
     type: string
-    default: git log --format="%s" -n 1 $CIRCLE_SHA1
+    default: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
 
 commands:
   node-version:
