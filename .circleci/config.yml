@@ -161,6 +161,7 @@ jobs:
       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
     working_directory: ~/main
     steps:
+      - checkout
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo $CIRCLE_COMPARE_URL
       - run: echo $(git log -1 --pretty=format:%b $CIRCLE_SHA1)
