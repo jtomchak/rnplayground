@@ -1,4 +1,8 @@
 version: 2.1
+parameters:
+  commit-message:
+    type: string
+    default: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
 
 commands:
   node-version:
@@ -159,13 +163,12 @@ jobs:
       - image: circleci/node:10-browsers
     environment:
       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
-      GIT_COMMIT_DESC: git log --format=oneline -n 1 $CIRCLE_SHA1
     working_directory: ~/main
     steps:
       - checkout
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo $CIRCLE_COMPARE_URL
-      - run: echo $GIT_COMMIT_DESC
+      - run: echo "<< pipeline.commit-message >>"
 
   android-test:
     macos:
