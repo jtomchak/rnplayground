@@ -159,12 +159,13 @@ jobs:
       - image: circleci/node:10-browsers
     environment:
       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+      GIT_VERSION: <<pipeline.git.revision>>
     working_directory: ~/main
     steps:
       - checkout
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo $CIRCLE_COMPARE_URL
-      - run: echo $(git log -1 --pretty=format:%b $CIRCLE_SHA1)
+      - run: git log -1 --pretty=format:%b $GIT_VERSION
 
   android-test:
     macos:
