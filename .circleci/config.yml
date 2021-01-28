@@ -1,8 +1,8 @@
 version: 2.1
 parameters:
   mobile-deploy:
-    type: boolean
-    default: 'deploy' == $(git log --format="%s" -n 1 $CIRCLE_SHA1)
+    type: string
+    default: default: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
 
 commands:
   node-version:
@@ -166,7 +166,7 @@ jobs:
       - run: echo " what is the mobile-deploy << pipeline.parameters.mobile-deploy >>"
       - when:
           condition:
-            equal: [true, << pipeline.parameters.mobile-deploy >>]
+            equal: [true, 'deploy' == << pipeline.parameters.mobile-deploy >>]
           steps:
             - run: echo "<< pipeline.parameters.mobile-deploy >>"
       - run: echo 0
