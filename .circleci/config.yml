@@ -156,7 +156,7 @@ commands:
 jobs:
   build:
     docker:
-      - image: alpine:3.7
+      - image: circleci/node:10-browsers
     steps:
       - checkout
       - run:
