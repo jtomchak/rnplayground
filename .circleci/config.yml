@@ -164,6 +164,7 @@ jobs:
     working_directory: ~/main
     steps:
       - checkout
+      - run: echo " what is the message: /n << pipeline.parameters.commit-message >>"
       - when:
           condition:
             equal: [true, << pipeline.parameters.commit-message >>]
