@@ -2,7 +2,7 @@ version: 2.1
 parameters:
   commit-message:
     type: string
-    default: $(git log --format="%s" -n 1 $CIRCLE_SHA1)
+    default: 'deploy' == $(git log --format="%s" -n 1 $CIRCLE_SHA1)
 
 commands:
   node-version:
@@ -166,7 +166,7 @@ jobs:
       - checkout
       - when:
           condition:
-            equal: ['deploy', << pipeline.parameters.commit-message >>]
+            equal: [true, << pipeline.parameters.commit-message >>]
           steps:
             - run: echo "<< pipeline.parameters.commit-message >>"
       - run: echo 0
