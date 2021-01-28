@@ -158,34 +158,34 @@ jobs:
     macos:
       xcode: 11.3.1
     steps:
-    - when:
+      - when:
           condition:
-            equal: [ develop, << pipeline.git.branch >> ]
-      - steps: 
-      - attach_workspace:
-          at: .
-      - checkout
-      - node-version
-      - bundle-dependencies
-      - npm-dependencies
-      - android-sdk-dependencies
-      - react-native-dependencies
-      - gradle-dependencies
-      - create-launch-android-emulator
-      - clear-detox-cache
+            equal: [develop, << pipeline.git.branch >>]
+        steps:
+          - attach_workspace:
+              at: .
+          - checkout
+          - node-version
+          - bundle-dependencies
+          - npm-dependencies
+          - android-sdk-dependencies
+          - react-native-dependencies
+          - gradle-dependencies
+          - create-launch-android-emulator
+          - clear-detox-cache
 
-      - run:
-          working_directory: .
-          name: Run android detox build
-          command: yarn e2e:android-release
+          - run:
+              working_directory: .
+              name: Run android detox build
+              command: yarn e2e:android-release
 
-      - store_artifacts:
-          path: ././artifacts
-          destination: ./jest-logs
+          - store_artifacts:
+              path: ././artifacts
+              destination: ./jest-logs
 
-      - store_artifacts:
-          path: ././reports
-          destination: ./reports
+          - store_artifacts:
+              path: ././reports
+              destination: ./reports
 
   ios-test:
     macos:
