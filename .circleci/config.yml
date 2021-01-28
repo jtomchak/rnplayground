@@ -166,7 +166,7 @@ jobs:
       - run: echo " what is the mobile-deploy << pipeline.parameters.mobile-deploy >>"
       - when:
           condition:
-            equal: [true, 'deploy' == << pipeline.parameters.mobile-deploy >>]
+            equal: [deploy, << pipeline.parameters.mobile-deploy >>]
           steps:
             - run: echo "<< pipeline.parameters.mobile-deploy >>"
       - run: echo 0
