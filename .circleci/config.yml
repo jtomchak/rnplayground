@@ -168,7 +168,7 @@ jobs:
       - checkout
       - run: echo "This is pipeline ID << pipeline.id >>"
       - run: echo $CIRCLE_COMPARE_URL
-      - run: echo "<< pipeline.commit-message >>"
+      - run: echo "<< pipeline.parameters.commit-message >>"
 
   android-test:
     macos:
